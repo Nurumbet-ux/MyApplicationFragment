@@ -38,23 +38,14 @@ public class MainActivity extends AppCompatActivity implements IFragments {
 
     @Override
     public void displayDetails(String title, String subTitle, int image) {
-        int orientation = getResources().getConfiguration().orientation;
-        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            if (isTablet) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_second,TExtFragment.newInstance(title,subTitle,image)).commit();
-            } else {
-                Intent intent = new Intent(this, DetailActivity.class);
-                intent.putExtra(KEY_TITLE, title);
-                intent.putExtra(KEY_DESC, subTitle);
-                intent.putExtra(KEY_IMAGE, image);
-                startActivity(intent);
-            }
-        } else {
+           if (isTablet) {
+               getSupportFragmentManager().beginTransaction().replace(R.id.fragment_second,TExtFragment.newInstance(title,subTitle,image)).commit();
+           }else {
             Intent intent = new Intent(this, DetailActivity.class);
             intent.putExtra(KEY_TITLE, title);
             intent.putExtra(KEY_DESC, subTitle);
             intent.putExtra(KEY_IMAGE, image);
             startActivity(intent);
-        }
+       }
     }
 }
